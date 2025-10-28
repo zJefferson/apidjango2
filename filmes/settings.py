@@ -8,6 +8,10 @@ https://docs.djangoproject.com/en/5.2/topics/settings/
 
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.2/ref/settings/
+
+token admin = cc163fc39f97413a70a66c4a0541700c6520e2de
+
+token usuario = 0c8adad7ac2cf08ef438519599d11dbb0052061d
 """
 
 import os
@@ -40,11 +44,17 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'rest_framework',
+    'rest_framework.authtoken',
 
     'catalogo',
+
+
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
+    
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -131,9 +141,22 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # DRF
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework.authentication.SessionAuthentication',
+       # 'rest_framework.authentication.SessionAuthentication',
+       'rest_framework.authentication.TokenAuthentication',
     ),
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.IsAuthenticatedOrReadOnly',
     ),
+    'DEFAULT_THROTTLE_CLASSES': (
+        'rest_framework.throttling.AnonRateThrottle',
+        'rest_framework.throttling.UserRateThrottle',
+    ),
+    'DEFAULT_THROTTLE_RATES': {
+        'anon': '5/minute', 
+        'user': '10/minute'
+    }
 }
+
+
+# Configuração do CORS
+CORS_ALLOW_ALL_ORIGINS = True
