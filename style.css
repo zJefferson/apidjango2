@@ -1,0 +1,55 @@
+body {
+    font-family: sans-serif;
+    margin: 20px;
+    background-color: #f4f4f4;
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+#catalogo-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.filme-card {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+}
+
+.filme-card h2 {
+    margin-top: 0;
+    color: #0056b3;
+}
+
+.avaliacoes-list {
+    margin-top: 15px;
+    border-top: 1px solid #eee;
+    padding-top: 15px;
+}
+
+.avaliacao {
+    background-color: #f9f9f9;
+    border-left: 3px solid #007bff;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+}
+
+.avaliacao h4 {
+    margin: 0 0 5px 0;
+}
+
+.avaliacao p {
+    margin: 0;
+    font-size: 0.9em;
+}

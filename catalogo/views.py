@@ -6,12 +6,17 @@ from rest_framework import viewsets
 from .models import Filme, Avaliacao
 from .serializers import FilmeSerializer, AvaliacaoSerializer
 
+from rest_framework import permissions
+
+from .permissions import EhSuperUser
+
 
 """
 API V1
 """
 
 class FilmesAPIView(generics.ListCreateAPIView):
+    
     queryset = Filme.objects.all()
     serializer_class = FilmeSerializer
 
@@ -46,6 +51,10 @@ API V2
 """
 
 class FilmeViewSet(viewsets.ModelViewSet):
+    permission_classes = (
+        EhSuperUser, #se essa classe resolve a permissão, não passa para a próxima
+        permissions.DjangoModelPermissions, 
+    )
     queryset = Filme.objects.all()
     serializer_class = FilmeSerializer
 

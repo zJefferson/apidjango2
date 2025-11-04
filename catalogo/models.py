@@ -22,7 +22,7 @@ class Filme(Base):
         return self.titulo
     
 class Avaliacao(Base):
-    filme = models.ForeignKey(Filme, related_name='avaliações', on_delete=models.CASCADE)
+    filme = models.ForeignKey(Filme, related_name='avaliacoes', on_delete=models.CASCADE)
     nome = models.CharField(max_length=255)
     email = models.EmailField()
     comentario = models.TextField(blank=True, default='')
